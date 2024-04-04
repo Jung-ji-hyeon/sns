@@ -5,16 +5,16 @@ import com.project.sns.model.AlarmType;
 import com.project.sns.model.User;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.extern.slf4j.Slf4j;
 
 import java.sql.Timestamp;
 
+@Slf4j
 @Getter
 @AllArgsConstructor
 public class Alarm {
 
     private Integer id;
-
-    private User user;
 
     private AlarmType alarmType;
 
@@ -27,9 +27,9 @@ public class Alarm {
     private Timestamp deletedAt;
 
     public static Alarm fromEntity(AlarmEntity entity) {
+        log.info(" ==== Call fromentity");
         return new Alarm(
                 entity.getId(),
-                User.fromEntity(entity.getUser()),
                 entity.getAlarmType(),
                 entity.getArgs(),
                 entity.getRegisteredAt(),
